@@ -44,7 +44,11 @@ defmodule BetterdocChallenge.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+
+      ### Additional Deps
+      # Code Style
+      {:credo, "~> 1.5", only: [:dev]}
     ]
   end
 
