@@ -5,15 +5,14 @@ defmodule BetterdocChallenge.ContactTest do
 
   describe ".changeset/2" do
     test "valid params" do
-      params =
-        %{
-          title: "Title",
-          first_name: "First",
-          last_name: "Last",
-          mobile_phone_number: "123456789",
-          address: "Street Asdf",
-          case_id: 1
-        }
+      params = %{
+        title: "Title",
+        first_name: "First",
+        last_name: "Last",
+        mobile_phone_number: "123456789",
+        address: "Street Asdf",
+        case_id: 1
+      }
 
       changes = Contact.changeset(params)
 
@@ -23,7 +22,8 @@ defmodule BetterdocChallenge.ContactTest do
     test "case_id required field" do
       changes = Contact.changeset(%{})
 
-      assert %Ecto.Changeset{errors: [case_id: {"can't be blank", [validation: :required]}]} = changes
+      assert %Ecto.Changeset{errors: [case_id: {"can't be blank", [validation: :required]}]} =
+               changes
     end
 
     test "valid with only case_id" do
