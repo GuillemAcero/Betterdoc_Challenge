@@ -1,0 +1,44 @@
+<div class="row">
+        <div class="column">
+            <h1> Adding new contact to case_id: <%= @case_id %> </h1>
+        </div>
+</div>
+<%= form_for @changeset, @route, fn f -> %>
+    <%= if @changeset.action do %>
+        <div class="alert alert-danger">
+            <p>Some fields are wrong! Check the errors below.</p>
+        </div>
+    <% end %>
+
+    <%= hidden_input f, :case_id, value: @case_id %>
+
+    <div>
+        <%= label f, :title%>
+        <%= text_input f, :title %>
+        <%= error_tag f, :title %> </div>
+    <div>
+        <%= label f, :first_name%>
+        <%= text_input f, :first_name %>
+        <%= error_tag f, :first_name %></div>
+    <div>
+        <%= label f, :last_name%>
+        <%= text_input f, :last_name %>
+        <%= error_tag f, :last_name  %></div>
+    <div>
+        <%= label f, :mobile_phone_number%>
+        <%= text_input f, :mobile_phone_number %>
+        <%= error_tag f, :mobile_phone_number  %></div>
+    <div>
+        <%= label f, :address%>
+        <%= text_input f, :address %>
+        <%= error_tag f, :address  %></div>
+
+    <div class="row">
+        <div class="column">
+            <%= submit "Add" %>
+        </div>
+        <div class="column">
+            <%= link("Back", to:  Routes.case_path(@conn, :show, @case_id), class: "button", style: "float:right;") %>
+        </div>
+    </div>
+<% end %>

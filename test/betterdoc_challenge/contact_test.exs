@@ -33,6 +33,14 @@ defmodule BetterdocChallenge.ContactTest do
 
       assert changes.valid?
     end
+
+    test "invalid changeset when mobile phone number contains letters" do
+      changes =
+        %{case_id: 1, mobile_phone_number: "12345f"}
+        |> Contact.changeset()
+
+      refute changes.valid?
+    end
   end
 
   describe "insert action" do

@@ -10,7 +10,7 @@
   </head>
   <header>
     <div class="col-xs-6">
-       <a href="localhost:4000/cases" class="phx-logo">
+       <a href="/" class="phx-logo">
           <img src="<%= Routes.static_path(@conn, "/images/betterdoclogo.png") %>" alt="BetterDoc Logo"/>
         </a>
     </div>

@@ -1,7 +1,7 @@
 defmodule BetterdocChallengeWeb.CaseController do
   use BetterdocChallengeWeb, :controller
 
-  alias BetterdocChallenge.{Repo, Case}
+  alias BetterdocChallenge.Case
 
   def index(conn, _params) do
     all_cases = Case.all()
@@ -10,7 +10,7 @@ defmodule BetterdocChallengeWeb.CaseController do
   end
 
   def show(conn, params) do
-    case_id = Map.get(params, "case_id")
+    case_id = Map.get(params, "id")
 
     render(conn, "show.html", case_data: Case.get_by_id(case_id))
   end

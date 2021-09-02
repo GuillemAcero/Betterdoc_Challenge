@@ -1,10 +1,10 @@
 <div class="row">
-        <div class="column">
-            <h1> Contacts for case_Id: <%= @case_data.id %> </h1>
-        </div>
+    <div class="column">
+        <h1> Contacts for case_Id: <%= @case_data.id %> </h1>
+    </div>
 </div>
 <div class="page-content col-xs-10 col-xs-offset-1">
-  <table class="table table-striped">
+    <table class="table table-striped">
         <%= if @case_data.contacts == [] do %>
             <tr>
                 <p> No contacts for this case </p>
@@ -27,8 +27,16 @@
                     <td><%= contact.last_name %></td>
                     <td><%= contact.mobile_phone_number %></td>
                     <td><%= contact.address %></td>
+                    <td><%= link("Edit", to: Routes.contact_path(@conn, :edit, contact.id), method: :get, class: "button")%></td>
+                    <td><%= link("Delete", to: Routes.contact_path(@conn, :delete, contact.id), method: :delete, class: "button")%></td>
                 </tr>
             <% end %>
         <% end %>
     </table>
+    <div class="row">
+        <div class="column">
+            <%= link("New Contact", to: Routes.contact_path(@conn, :new, %{case_id: @case_data.id}), method: :get, class: "button") %>
+            <%= link("Back", to: "/", class: "button", style: "float:right; margin-right:70px;") %>
+        </div>
+    </div>
 </div>

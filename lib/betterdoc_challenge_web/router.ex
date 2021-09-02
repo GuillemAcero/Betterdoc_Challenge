@@ -22,6 +22,16 @@ defmodule BetterdocChallengeWeb.Router do
       get("/", CaseController, :index)
       get("/:id", CaseController, :show)
     end
+
+    scope "/contacts" do
+      get("/new", ContactController, :new)
+      post("/create", ContactController, :create)
+
+      get("/edit/:id", ContactController, :edit)
+      put("/update/:id", ContactController, :update)
+
+      delete("/:id", ContactController, :delete)
+    end
   end
 
   # Other scopes may use custom stacks.
