@@ -23,7 +23,15 @@ defmodule BetterdocChallenge.Case do
     |> Repo.all()
   end
 
-  def get_by_id(case_id) do
+  def get_by_id(case_id) when is_binary(case_id) do
+    try do
+      get_by_id(String.to_integer(case_id))
+    rescue
+      _ -> nil
+    end
+  end
+
+  def get_by_id(case_id) when is_number(case_id) do
     __MODULE__
     |> Repo.get(case_id)
     |> Repo.preload([:contacts])

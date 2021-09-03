@@ -26,12 +26,19 @@ defmodule BetterdocChallenge.Contact do
     |> validate_phone()
   end
 
-  def get_by_id(id) do
+  def get_by_id(id) when is_binary(id) do
+    try do
+      get_by_id(String.to_integer(id))
+    rescue
+      _ -> {:error, :invalid_id}
+    end
+  end
+
+  def get_by_id(id) when is_number(id) do
     __MODULE__
     |> Repo.get(id)
   end
 
-  # TODO ALL TESTING
   def create(params) do
     params
     |> changeset()
@@ -41,13 +48,21 @@ defmodule BetterdocChallenge.Contact do
   def update(id, params) do
     id
     |> get_by_id()
-    |> changeset(params)
+    |> case do
+      %__MODULE__{} = contact -> changeset(contact, params)
+      nil -> add_error(changeset(params), :id, "Not found with id")
+      {:error, _} -> add_error(changeset(params), :id, "Invalid id provided")
+    end
     |> Repo.update()
   end
 
   def delete(id) do
-    __MODULE__
-    |> Repo.get(id)
+    id
+    |> get_by_id()
+    |> case do
+      %__MODULE__{} = contact -> contact
+      _ -> add_error(changeset(%{}), :id, "Could not delete")
+    end
     |> Repo.delete()
   end
 

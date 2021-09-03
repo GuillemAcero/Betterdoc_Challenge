@@ -17,7 +17,7 @@ defmodule BetterdocChallengeWeb.ContactController do
     contact_params = Map.get(params, "contact")
 
     contact_params
-    |>Contact.create()
+    |> Contact.create()
     |> case do
       {:ok, _} ->
         conn

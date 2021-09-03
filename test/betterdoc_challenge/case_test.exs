@@ -56,4 +56,34 @@ defmodule BetterdocChallenge.CaseTest do
       assert Repo.all(BetterdocChallenge.Contact) == []
     end
   end
+
+  describe ".all/0" do
+    test "returns all the cases" do
+      Enum.map(1..5, fn _ ->
+        Case.changeset(%{}) |> Repo.insert!()
+      end)
+
+      assert length(Case.all()) == 5
+    end
+
+    test "with no cases returns empty list" do
+      assert Case.all() == []
+    end
+  end
+
+  describe ".get_by_id/1" do
+    test "valid id returns all the case" do
+      case_record = Case.changeset(%{}) |> Repo.insert!()
+
+      assert %Case{} = Case.get_by_id(case_record.id)
+    end
+
+    test "not found id returns nil" do
+      assert Case.get_by_id(123) == nil
+    end
+
+    test "invalid id returns nil" do
+      assert Case.get_by_id("invalid") == nil
+    end
+  end
 end
