@@ -48,7 +48,13 @@ defmodule BetterdocChallenge.MixProject do
 
       ### Additional Deps
       # Code Style
-      {:credo, "~> 1.5", only: [:dev]}
+      {:credo, "~> 1.5", only: [:dev]},
+      # Authenticatiopn
+      {:ueberauth, "~> 0.6.3"},
+      {:ueberauth_identity, "~> 0.3.0"},
+      {:guardian, "~> 2.1"},
+      # Password encryptation
+      {:argon2_elixir, "~> 2.0"}
     ]
   end
 

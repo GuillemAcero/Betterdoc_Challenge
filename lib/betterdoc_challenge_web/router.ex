@@ -18,6 +18,11 @@ defmodule BetterdocChallengeWeb.Router do
 
     get "/", CaseController, :index
 
+    get "/register", RegistrationController, :new
+    post "/register", RegistrationController, :create
+
+    get "/login", SessionController, :new
+
     scope "/cases" do
       get("/", CaseController, :index)
       get("/:id", CaseController, :show)
